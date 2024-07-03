@@ -9,7 +9,7 @@
 ## Django App
 
 - Create new app(basically microservice) using `python manage.py startapp <app_name>`
-- It will create a directory with some predefined files. Add the new app in `setting.py` in `installed_apps` list. Configure url as well.
+- It will create a directory with some predefined files. Add the new app in `wurk_backend/setting.py` in `installed_apps` list. Configure url as well.
 - Write handler function in `views.py`.
 - Write db configuration in `models.py`. Create a class and define the table elements. It is very eay in django to deal with database. Do all table declaration, later you can also update. Django will take care of reflecting it into table.
 - Run `python3 manage.py makemigrations` to create migration file. Then run `python3 manage.py migrate` to reflect changes into database

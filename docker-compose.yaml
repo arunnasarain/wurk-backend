@@ -2,27 +2,29 @@ version: '3.8'
 
 services:
 
-  wurk-db:
+  db:
     image: postgres:latest
     environment:
+      POSTGRES_DB: wurk
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: wurk
     ports:
-      - "3001:5432"
+      - "3002:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  wurk-api:
+  api:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
+    volumes:
+      - .:/usr/src/app
     env_file:
       - ./envs/.env.local
     ports:
-      - "3000:8000"
-    volumes:
-      - .:/app
+      - "3001:8001"
     depends_on:
-      - wurk-db
+      - db
+
 volumes:
   postgres_data:
-    driver: local{}
+    driver: local
